@@ -16,6 +16,11 @@ public class ClosedRange {
         return lowerEndpoint <= i && i <= upperEndpoint;
     }
 
+    public boolean isEqual(ClosedRange other) {
+        return this.lowerEndpoint == other.lowerEndpoint
+                && this.upperEndpoint == other.upperEndpoint;
+    }
+
     @Override
     public String toString() {
         return String.format("[%s,%s]", lowerEndpoint, upperEndpoint);
