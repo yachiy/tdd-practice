@@ -12,8 +12,14 @@ public class ClosedRange {
         this.upperEndpoint = upperEndpoint;
     }
 
+    public boolean contains(int i) {
+        return lowerEndpoint <= i && i <= upperEndpoint;
+    }
+
     @Override
     public String toString() {
         return String.format("[%s,%s]", lowerEndpoint, upperEndpoint);
     }
+
+
 }
