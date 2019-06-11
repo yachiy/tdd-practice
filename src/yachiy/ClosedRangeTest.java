@@ -91,4 +91,41 @@ class ClosedRangeTest {
         }
     }
 
+    @Nested
+    class 別の閉区間が完全に含まれるかどうか判定できること {
+        private ClosedRange sut;
+        // 内包判定のため、MINとMAXは2以上離すこと
+        private static final int MIN = 1;
+        private static final int MAX = 4;
+
+        @BeforeEach
+        public void 閉区間生成() {
+            sut = new ClosedRange(MIN, MAX);
+        }
+
+        @Test
+        public void 等価な閉区間は含まれていると判定すること() {
+            assertTrue(sut.contains(new ClosedRange(MIN, MAX)));
+        }
+
+        @Test
+        public void 内包される閉区間は含まれていると判定すること() {
+            assertTrue(sut.contains(new ClosedRange(MIN + 1, MAX - 1)));
+        }
+
+        @Test
+        public void 上端点のみが区間内にある閉区間は含まれていないと判定すること() {
+            assertFalse(sut.contains(new ClosedRange(MIN - 1, MIN + 1)));
+        }
+
+        @Test
+        public void 下端点のみが区間内にある閉区間は含まれていないと判定すること() {
+            assertFalse(sut.contains(new ClosedRange(MAX - 1, MAX + 1)));
+        }
+
+        @Test
+        public void 下端点と上端点のどちらも区間内にないの閉区間は含まれていないと判定すること() {
+            assertFalse(sut.contains(new ClosedRange(MIN - 1, MAX + 1)));
+        }
+    }
 }
