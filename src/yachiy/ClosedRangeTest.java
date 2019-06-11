@@ -3,8 +3,7 @@ package yachiy;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 class ClosedRangeTest {
 
@@ -21,6 +20,16 @@ class ClosedRangeTest {
         public void 下端点が2で上端点が1の閉区間を生成できないこと() throws IllegalArgumentException {
             IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> new ClosedRange(2, 1));
             assertEquals("2>1", exception.getMessage());
+        }
+
+        @Test
+        public void 下端点が1で上端点が2の閉区間を生成できること() {
+            assertDoesNotThrow(() -> new ClosedRange(1, 2));
+        }
+
+        @Test
+        public void 下端点が1で上端点も1の閉区間を生成できること() {
+            assertDoesNotThrow(() -> new ClosedRange(1, 1));
         }
     }
 }
