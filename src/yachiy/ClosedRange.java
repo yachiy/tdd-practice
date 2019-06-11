@@ -12,8 +12,8 @@ public class ClosedRange {
         this.upperEndpoint = upperEndpoint;
     }
 
-    public boolean contains(int value) {
-        return lowerEndpoint <= value && value <= upperEndpoint;
+    public boolean contains(int point) {
+        return lowerEndpoint <= point && point <= upperEndpoint;
     }
 
     public boolean contains(ClosedRange other) {
